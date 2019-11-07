@@ -7,10 +7,6 @@ network-tracker
 
 ## Project Schedule
 
-This schedule will be used to keep track of your progress throughout the week and align with our expectations.  
-
-You are **responsible** for attending squad standup at the begining and end of the day.
-
 |  Day | Deliverable | Status
 |---|---| ---|
 | 11/7 | Project Design, approval, pseudocode backend, and start backend | Incomplete
@@ -22,10 +18,9 @@ You are **responsible** for attending squad standup at the begining and end of t
 | 11/14 | Finish design and PMVP | Incomplete
 | 11/15 | Present | Incomplete
 
-
 ## Project Description
 
-A responsive web application that allows users to create specific social networks and add people to them. The user will be able to perform full crud on both their social networks and the people they've added.
+A responsive web application that allows users to create specific social networks and add people to them. The user will be able to perform full crud on both their social networks and the people they've added. 
 
 ## Wireframes
 
@@ -36,12 +31,9 @@ A responsive web application that allows users to create specific social network
 
 https://wireframe.cc/0fQuPj
 
-### MVP/PostMVP - 5min
+### MVP/PostMVP
 
-The functionality will then be divided into two separate lists: MPV and PostMVP.  Carefully decided what is placed into your MVP as the client will expect this functionality to be implemented upon project completion.  
-
-#### MVP 
-
+# MVP 
 - Create DB
 - Full CRUD backend
 - Connect frontend and backend
@@ -49,8 +41,7 @@ The functionality will then be divided into two separate lists: MPV and PostMVP.
 - Full CRUD for user, networks, and people
 - Working Auth 
 
-#### PostMVP 
-
+# PostMVP 
 - Dynamic header that shows user's name and conditional login/logout/register button
 - social media intergration
 - calendar integration
@@ -103,9 +94,7 @@ https://res.cloudinary.com/dsnhxcw0e/image/upload/v1573139540/Image_from_iOS_1_n
 
 
 ## Helper Functions
-Helper functions should be generic enought that they can be reused in other applications. Use this section to document all helper functions that fall into this category.
 
-#### SAMPLE.....
 | Function | Description | 
 | --- | :---: |  
 | Map | Map through lists | 
