@@ -34,8 +34,12 @@ module NetworkTracker
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
     config.app_generators.scaffold_controller = :scaffold_controller
-    # config.app_generators.resource_controller = :resource_controller
-
+    config.middleware.use Rack::Cors do
+      allow do
+        origins '*'
+        resource '*', :headers => :any, :methods => [:get, :post, :put, :options, :delete], :credentials => false
+      end
+    end
     # Middleware for ActiveAdmin
     config.middleware.use Rack::MethodOverride
     config.middleware.use ActionDispatch::Flash
