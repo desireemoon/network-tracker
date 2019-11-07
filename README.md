@@ -13,13 +13,14 @@ You are **responsible** for attending squad standup at the begining and end of t
 
 |  Day | Deliverable | Status
 |---|---| ---|
-|Day 1| Project Description | Incomplete
-|Day 2| Wireframes / Priority Matrix / Functional Components | Incomplete
-|Day 3| Core Application Structure (HTML, CSS, etc.) | Incomplete
-|Day 4| Pseudocode / actual code | Incomplete
-|Day 5| Initial Clickable Model  | Incomplete
-|Day 6| MVP | Incomplete
-|Day 7| Present | Incomplete
+| 11/7 | Project Design, approval, pseudocode backend, and start backend | Incomplete
+| 11/8 | Finish backend | Incomplete
+| 11/9 & 11/10 | Finish backend if not done and pseudocode frontend  | Incomplete
+| 11/11 | Frontend structure and start on logic | Incomplete
+| 11/12 | Finish logic and design | Incomplete
+| 11/13 | deploy and finish design | Incomplete
+| 11/14 | Finish design and PMVP | Incomplete
+| 11/15 | Present | Incomplete
 
 
 ## Project Description
@@ -28,55 +29,78 @@ A responsive web application that allows users to create specific social network
 
 ## Wireframes
 
-Upload images of wireframe to cloudinary and add the link here with a description of the specific wireframe.
+- Web: https://res.cloudinary.com/dsnhxcw0e/image/upload/v1573139549/Image_from_iOS_3_d8qh8k.jpg
+- Mobile: https://res.cloudinary.com/dsnhxcw0e/image/upload/v1573139545/Image_from_iOS_2_ugaxrt.jpg
 
 ## Priority Matrix
 
-Include a full list of features that have been prioritized based on the `Time and Importance` Matix.  
+https://wireframe.cc/0fQuPj
 
 ### MVP/PostMVP - 5min
 
 The functionality will then be divided into two separate lists: MPV and PostMVP.  Carefully decided what is placed into your MVP as the client will expect this functionality to be implemented upon project completion.  
 
-#### SAMPLE.....
 #### MVP 
 
-- Find and use external api 
-- Render data on page in a list
+- Create DB
+- Full CRUD backend
+- Connect frontend and backend
+- Responsive Frontend
+- Full CRUD for user, networks, and people
+- Working Auth 
 
 #### PostMVP 
 
-- Add data to favorites section
+- Dynamic header that shows user's name and conditional login/logout/register button
+- social media intergration
+- calendar integration
+- Connecting Users to each other (interact with each other)
+- AI assitant that does most of the manual upadating and eventually AI will setup meetups for User
 
 ## Architectural Design
 
-Define the the components and the architectural design of your app.
-
-#### [SAMPLE FROM A MAP BASED PROJECT](https://res.cloudinary.com/dvjtpejbw/image/upload/v1540221204/20181022_111216.jpg)
+https://res.cloudinary.com/dsnhxcw0e/image/upload/v1573139558/Image_from_iOS_4_eswzib.jpg
 
 ## ERD
 
-Create the ERD model for your project
+https://res.cloudinary.com/dsnhxcw0e/image/upload/v1573139540/Image_from_iOS_1_njio7l.jpg
 
 ## UI Components
 
-Based on the initial logic defined in the previous sections try and breakdown the logic further into stateless/stateful components. 
-
-#### SAMPLE.....
 | Component | Description | 
 | --- | :---: |  
-| Header | This will render the header include the nav | 
-| Footer | This will render the header include the nav | 
+| App | This will hold the Header, Main, and Footer. Router will wrap Header and Main here. - stateless |
+| Header | Holds title and nav bar links - stateless | 
+| Footer | Holds social and README links - stateless  | 
+| Main | This will hold the rest of the components - will hold state |
+| Login/Register | Homepage for the site when not logged in, users will login/register here|
+| CreateNetwork | Allows user to create a network and add people to network |
+| NetworkDashboard| Holds links to each type of network that user can click to see all networks in that type |
+| Network List | List of all networks in a particular type, can edit and delete here |
+| Edit Network | User can edit specific network lists |
+| CreatePerson | User can create a person |
+| PersonList | List of all created people |
+| PersonProfile | Full info of person created, can delete person or go to edit page |
+| EditPerson | User can edit person info  |
+| NotFound | Redirect if user goes to a page that doesn't exist - stateless |
 
 
-Time frames are also key in the development cycle.  You have limited time to code all phases of the game.  Your estimates can then be used to evalute game possibilities based on time needed and the actual time you have before game must be submitted. It's always best to pad the time by a few hours so that you account for the unknown so add and additional hour or two to each component to play it safe.
+## Time Frames
 
-#### SAMPLE.....
-| Component | Priority | Estimated Time | Actual Time |
-| --- | :---: |  :---: | :---: |
-| Adding Form | H | 3hrs| 3.5hrs |
-| Working with API | H | 3hrs| 2.5hrs |
-| Total | H | 6hrs| 5hrs | 
+| Component | Priority | Estimated Time | Time Invested | Actual Time |
+| --- | :---: |  :---: | :---: | :---: |
+| Project Design | H | 4hrs| 4hrs | :---: |
+| Pseudocode | M | 4hrs| :---: | :---: |
+| Create DB (models, migration, seed) | H | 5hrs | :---: | :---: |
+| Create rest of backend including routes | H | 5hrs| :---: | :---: |
+| REACT structure | H | 6hrs| :---: | :---: |
+| React routing and links | H | 1hrs| :---: | :---: |
+| React logic and API calls | H | 6hrs| :---: | :---: |
+| Plan out designs | M | 4hrs| :---: | :---: |
+| CSS styling | M | 10hrs| :---: | :---: |
+| PMVP | M | 6hrs| :---: | :---: |
+| Total | H | 51hrs| :---: | :---: |
+
 
 ## Helper Functions
 Helper functions should be generic enought that they can be reused in other applications. Use this section to document all helper functions that fall into this category.
@@ -84,16 +108,16 @@ Helper functions should be generic enought that they can be reused in other appl
 #### SAMPLE.....
 | Function | Description | 
 | --- | :---: |  
-| Capitalize | This will capitalize the first letter in a string of text | 
+| Map | Map through lists | 
 
 ## Additional Libraries
- Use this section to list all supporting libraries and thier role in the project. 
- 
- #### SAMPLE.....
-| Library | What it Does | 
-| --- | :---: |  
-| Bootstrap | Used to help style my application | 
-| Giphy API | Used to get gifs to use | 
+- react-router
+- axios
+- hamburger
+- react-router-dom
+- @fortawesome/fontawesome-svg-core
+- @fortawesome/free-brands-svg-icons
+- @fortawesome/free-solid-svg-icons
 
 
 ## Code Snippet
