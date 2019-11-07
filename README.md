@@ -24,7 +24,7 @@ You are **responsible** for attending squad standup at the begining and end of t
 
 ## Project Description
 
-Use this section to describe your final project and perhaps any links to relevant sites that help convey the concept and\or functionality.
+A responsive web application that allows users to create specific social networks and add people to them. The user will be able to perform full crud on both their social networks and the people they've added.
 
 ## Wireframes
 
