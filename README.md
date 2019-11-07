@@ -80,7 +80,7 @@ https://res.cloudinary.com/dsnhxcw0e/image/upload/v1573139540/Image_from_iOS_1_n
 
 | Component | Priority | Estimated Time | Time Invested | Actual Time |
 | --- | :---: |  :---: | :---: | :---: |
-| Project Design | H | 4hrs| 4hrs | :---: |
+| Project Design | H | 4hrs| 4hrs | 4hrs |
 | Pseudocode | M | 4hrs| :---: | :---: |
 | Create DB (models, migration, seed) | H | 5hrs | :---: | :---: |
 | Create rest of backend including routes | H | 5hrs| :---: | :---: |
@@ -90,7 +90,7 @@ https://res.cloudinary.com/dsnhxcw0e/image/upload/v1573139540/Image_from_iOS_1_n
 | Plan out designs | M | 4hrs| :---: | :---: |
 | CSS styling | M | 10hrs| :---: | :---: |
 | PMVP | M | 6hrs| :---: | :---: |
-| Total | H | 51hrs| :---: | :---: |
+| Total | H | 51hrs| 4hrs | :---: |
 
 
 ## Helper Functions
