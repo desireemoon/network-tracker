@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 2019_11_07_202618) do
 
   create_table "networks", force: :cascade do |t|
     t.string "name"
-    t.string "type"
+    t.string "network_type"
     t.text "description"
     t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
