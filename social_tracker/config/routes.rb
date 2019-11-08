@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :users
+  resources :users, path: ''
     resources :networks
     resources :people
   post '/auth/login', to: 'authentication#login'
