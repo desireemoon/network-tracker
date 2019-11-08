@@ -5,7 +5,17 @@ class NetworksController < ApiController
         render json: @networks, include: :people, status: :ok 
     end 
     def show
-        @networks = Network.find(params[:id])
-        render json: @networks, include: :people, status: :ok 
+        begin
+            @networks = Network.find(params[:id])
+            render json: @networks, include: :people, status: :ok 
+        rescue ActiveRecord::RecordNotFound
+            render json: {
+                message: "Network not found with that ID"
+            }, status: 404
+        rescue StandardError => e
+            render json: {
+                message: e.to_s
+            }, status: 500
+        end
     end 
 end

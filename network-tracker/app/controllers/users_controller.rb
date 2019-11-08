@@ -5,10 +5,20 @@ class UsersController < ApiController
         @users = User.all
         render json: @users, status: :ok 
     end 
-    
+
     def show
-        @users = User.find(params[:id])
-        render json: @users, status: :ok
+        begin
+            @users = User.find(params[:id])
+            render json: @users, status: :ok
+        rescue ActiveRecord::RecordNotFound
+            render json: {
+                message: "User not found with that ID"
+            }, status: 404
+        rescue StandardError => e
+            render json: {
+                message: e.to_s
+            }, status: 500
+        end
     end 
 
     def user_params
