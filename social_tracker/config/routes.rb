@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :users
+    resources :networks
+    resources :people
   post '/auth/login', to: 'authentication#login'
   get '/auth/verify', to: 'authentication#verify'
   devise_for :admin_users, ActiveAdmin::Devise.config

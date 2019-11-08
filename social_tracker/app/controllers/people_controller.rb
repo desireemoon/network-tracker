@@ -6,7 +6,7 @@ class PeopleController < ApiController
     end 
     def show
         begin
-            @people = Person.find(params[:id])
+            @person = Person.find(params[:id])
             render json: @people, status: :ok 
         rescue ActiveRecord::RecordNotFound
             render json: {
@@ -22,16 +22,16 @@ class PeopleController < ApiController
     def create 
         puts 'creating Person'
         puts params
-          teacher =  Teacher.new(teacher_params)
-        puts "??", teacher
-          if teacher.save 
+          person =  Person.new(person_params)
+        puts "??", person
+          if person.save 
               render json: {
                   message: "ok",
-                  teacher: teacher
+                  person: person
               }
           else 
               render json: {
-                  message: teacher.errors
+                  message: person.errors
               }, status: 500
           end
       end
@@ -39,10 +39,10 @@ class PeopleController < ApiController
       private 
   
     def set_person 
-        @person = Teacher.find(params[:id])
+        @person = Person.find(params[:id])
     end
   
     def person_params
-      params.permit(:name, :photo)
+      params.permit(:name, :picture, :relation, :virtual_interaction, :irl_interaction, :phone, :email, :address, :notes)
     end
 end
