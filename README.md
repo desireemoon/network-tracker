@@ -9,7 +9,7 @@ network-tracker
 
 |  Day | Deliverable | Status
 |---|---| ---|
-| 11/7 | Project Design, approval, pseudocode backend, and start backend | Incomplete
+| 11/7 | Project Design, approval, pseudocode backend, and start backend | Complete
 | 11/8 | Finish backend | Incomplete
 | 11/9 & 11/10 | Finish backend if not done and pseudocode frontend  | Incomplete
 | 11/11 | Frontend structure and start on logic | Incomplete
@@ -81,9 +81,9 @@ https://res.cloudinary.com/dsnhxcw0e/image/upload/v1573139540/Image_from_iOS_1_n
 | Component | Priority | Estimated Time | Time Invested | Actual Time |
 | --- | :---: |  :---: | :---: | :---: |
 | Project Design | H | 4hrs| 4hrs | 4hrs |
-| Pseudocode | M | 4hrs| :---: | :---: |
-| Create DB (models, migration, seed) | H | 5hrs | :---: | :---: |
-| Create rest of backend including routes | H | 5hrs| :---: | :---: |
+| Pseudocode | M | 4hrs| 2hrs | :---: |
+| Create DB (models, migration, seed) | H | 5hrs | 5hrs | 5hrs |
+| Create rest of backend including routes | H | 5hrs| 5hrs | :---: |
 | REACT structure | H | 6hrs| :---: | :---: |
 | React routing and links | H | 1hrs| :---: | :---: |
 | React logic and API calls | H | 6hrs| :---: | :---: |

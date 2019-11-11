@@ -46,7 +46,7 @@ group :production do
   gem 'pg'
 end
 
-
+gem 'rubocop', require: false
 # ActiveAdmin
 gem 'devise'
 gem 'activeadmin'

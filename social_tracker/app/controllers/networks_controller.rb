@@ -1,9 +1,11 @@
 class NetworksController < ApiController
+    before_action :set_network, only: %i[show update destroy]
     before_action :authorize_request, except: %i[index show]
     def index
         @networks = Network.all
         render json: @networks, include: :people, status: :ok 
     end 
+
     def show
         begin
             @networks = Network.find(params[:id])
@@ -17,5 +19,53 @@ class NetworksController < ApiController
                 message: e.to_s
             }, status: 500
         end
-    end 
+    end
+    
+    def create 
+        puts 'creating Network'
+        puts params
+          network =  Network.new(network_params)
+        puts "??", network
+          if network.save 
+              render json: {
+                  message: "ok",
+                  network: network
+              }
+          else 
+              render json: {
+                  message: network.errors
+              }, status: 500
+          end
+      end
+
+      def update 
+        if @network.update(network_params)
+            render json: {
+                message: "ok",
+                network: @network
+            }
+        else 
+            render json: {
+                message: @network.errors
+            }, status: 500
+        end
+    end
+  
+    def destroy
+        @network.destroy
+        render json: {
+            message: "ok"
+        }
+    end
+
+      private 
+    def set_network 
+        @network = Network.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+        render json: { message: 'no network matches that ID' }, status: 404
+    end
+  
+    def network_params
+      params.require(:network).permit(:name, :type, :description, :user_id)
+    end
 end
