@@ -14,7 +14,7 @@ class AllNetworks extends Component {
             <div className="network-container">
                 {this.props.networks && this.props.networks.map(network => (
                     <div className="network-box" key={network.id}>
-                        <Link to={`/networks/${network.id}`} onClick={() => this.props.setNetwork(network)}> Show Networks </Link>
+                        <Link to={`/networks/${network.id}`} onClick={() => this.props.setNetwork(network)}>{network.name}</Link>
                     </div>
                 )
                 )}

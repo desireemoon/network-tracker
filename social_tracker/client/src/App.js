@@ -5,6 +5,9 @@ import axios from "axios";
 
 import Login from './components/Login'
 import Register from './components/Register'
+import Header from './components/Header'
+import Main from './components/Main'
+import Footer from './components/Footer'
 
 import './App.css';
 
@@ -44,11 +47,11 @@ class App extends Component {
         networks: jsonRes.data,
         networksLoaded: true
       });
-      console.log("jsonres:",jsonRes.data);
+      console.log("jsonres:", jsonRes.data);
       // console.log("networks:", networks);
-      
+
     });
-    
+
   };
 
   handleDeleteNetwork = (removedNetwork) => {
@@ -111,29 +114,31 @@ class App extends Component {
             <button onClick={this.handleLoginButton}>Login/register</button>
           }
         </div>
+        <Switch>
+          <Route
+            exact path="/"
+            render={() => (
+              <AllNetworks
+                getAllNetworks={this.getAllNetworks}
+                networks={this.state.networks}
+                networksLoaded={this.state.networksLoaded}
+                setNetwork={this.setNetwork}
+              />
+            )}
+          />
+          <Route exact path="/login" render={() => (
+            <Login
+              handleLogin={this.handleLogin}
+              handleChange={this.authHandleChange}
+              formData={this.state.authFormData} />)} />
+          <Route exact path="/register" render={() => (
+            <Register
+              handleRegister={this.handleRegister}
+              handleChange={this.authHandleChange}
+              formData={this.state.authFormData} />)} />
+        </Switch>
 
-        <Route exact path="/login" render={() => (
-          <Login
-            handleLogin={this.handleLogin}
-            handleChange={this.authHandleChange}
-            formData={this.state.authFormData} />)} />
-        <Route exact path="/register" render={() => (
-          <Register
-            handleRegister={this.handleRegister}
-            handleChange={this.authHandleChange}
-            formData={this.state.authFormData} />)} />
-        <Route
-          exact path="/"
-          render={() => (
-            <AllNetworks
-            getAllNetworks={this.getAllNetworks}
-            networks={this.state.networks}
-            networksLoaded={this.state.networksLoaded}
-            setNetwork={this.setNetwork}
-               />
-          )}
-        />
-      
+
       </div>
     );
   }
