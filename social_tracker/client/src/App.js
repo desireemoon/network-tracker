@@ -103,7 +103,16 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <div>
+        <header>
+
+        <Header
+          currentUser={this.state.currentUser}
+          handleLogout={this.handleLogout}
+          handleLogin={this.handleLoginButton}
+        />
+        </header>
+        <main>
+        {/* <div>
           {this.state.currentUser
             ?
             <>
@@ -113,30 +122,36 @@ class App extends Component {
             :
             <button onClick={this.handleLoginButton}>Login/register</button>
           }
-        </div>
-        <Switch>
-          <Route
-            exact path="/"
-            render={() => (
-              <AllNetworks
-                getAllNetworks={this.getAllNetworks}
-                networks={this.state.networks}
-                networksLoaded={this.state.networksLoaded}
-                setNetwork={this.setNetwork}
-              />
-            )}
-          />
-          <Route exact path="/login" render={() => (
-            <Login
-              handleLogin={this.handleLogin}
-              handleChange={this.authHandleChange}
-              formData={this.state.authFormData} />)} />
-          <Route exact path="/register" render={() => (
-            <Register
-              handleRegister={this.handleRegister}
-              handleChange={this.authHandleChange}
-              formData={this.state.authFormData} />)} />
-        </Switch>
+        </div> */}
+        
+          <Switch>
+            <Route
+              exact path="/"
+              render={() => (
+                <AllNetworks
+                  getAllNetworks={this.getAllNetworks}
+                  networks={this.state.networks}
+                  networksLoaded={this.state.networksLoaded}
+                  setNetwork={this.setNetwork}
+                />
+              )}
+            />
+            <Route exact path="/login" render={() => (
+              <Login
+                handleLogin={this.handleLogin}
+                handleChange={this.authHandleChange}
+                formData={this.state.authFormData} />)} />
+            <Route exact path="/register" render={() => (
+              <Register
+                handleRegister={this.handleRegister}
+                handleChange={this.authHandleChange}
+                formData={this.state.authFormData} />)} />
+          </Switch>
+        </main>
+        <footer>
+
+        <Footer />
+        </footer>
 
 
       </div>
