@@ -33,6 +33,7 @@ class App extends Component {
       networksLoaded: false,
       currentUser: null,
       authFormData: {
+        name: "",
         username: "",
         email: "",
         password: ""
@@ -75,6 +76,8 @@ class App extends Component {
   handleLogin = async () => {
     const currentUser = await loginUser(this.state.authFormData);
     this.setState({ currentUser });
+    console.log("auth data:",  this.state.authFormData);
+    
   }
 
   handleRegister = async (e) => {
@@ -105,14 +108,14 @@ class App extends Component {
       <div className="App">
         <header>
 
-        <Header
-          currentUser={this.state.currentUser}
-          handleLogout={this.handleLogout}
-          handleLogin={this.handleLoginButton}
-        />
+          <Header
+            currentUser={this.state.currentUser}
+            handleLogout={this.handleLogout}
+            handleLogin={this.handleLoginButton}
+          />
         </header>
         <main>
-        {/* <div>
+          {/* <div>
           {this.state.currentUser
             ?
             <>
@@ -123,7 +126,16 @@ class App extends Component {
             <button onClick={this.handleLoginButton}>Login/register</button>
           }
         </div> */}
-        
+          {/* <Main
+            getAllNetworks={this.getAllNetworks}
+            networks={this.state.networks}
+            networksLoaded={this.state.networksLoaded}
+            setNetwork={this.setNetwork}
+            handleLogin={this.handleLogin}
+            handleChange={this.authHandleChange}
+            formData={this.state.authFormData}
+            handleRegister={this.handleRegister}
+          /> */}
           <Switch>
             <Route
               exact path="/"
@@ -150,7 +162,7 @@ class App extends Component {
         </main>
         <footer>
 
-        <Footer />
+          <Footer />
         </footer>
 
 

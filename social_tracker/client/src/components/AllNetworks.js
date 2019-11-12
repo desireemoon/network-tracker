@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
+
 
 class AllNetworks extends Component {
 
@@ -23,4 +25,4 @@ class AllNetworks extends Component {
     }
 }
 
-export default AllNetworks
+export default withRouter(AllNetworks);
