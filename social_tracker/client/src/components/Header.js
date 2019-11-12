@@ -23,7 +23,7 @@ const Header = (props) => {
                     {props.currentUser
                         ?
                         <>
-                            <p>{props.currentUser.user.name}</p>
+                            <p>{ props.currentUser.user ? props.currentUser.user.name: props.currentUser.name}</p>
                             <Link onClick={props.handleLogout}>logout</Link>
                         </>
                         :

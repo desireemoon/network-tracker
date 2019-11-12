@@ -87,7 +87,10 @@ class App extends Component {
   handleRegister = async (e) => {
     e.preventDefault();
     const currentUser = await registerUser(this.state.authFormData);
+    console.log("new register", currentUser);
+
     this.setState({ currentUser });
+    
   }
 
   handleLogout = () => {

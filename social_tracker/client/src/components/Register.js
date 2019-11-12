@@ -20,7 +20,7 @@ const Register = (props) => {
         <p>Password:</p>
         <input name="password" type="password" value={props.formData.password} onChange={props.handleChange} />
         <hr />
-        <input type="submit" title="login" />
+        <input type="submit" />
       </form>
     </div>
   );

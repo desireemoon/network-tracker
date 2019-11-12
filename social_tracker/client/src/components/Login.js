@@ -25,7 +25,7 @@ const Login = (props) => {
         <p>Password:</p>
         <input name="password" type="password" value={props.formData.password} onChange={props.handleChange} />
         <div className="login-buttons">
-        <input type="submit" title="login"/>
+        <input type="submit" />
         <Link to="/register"><button>Register</button></Link>
         </div>
       </form>
