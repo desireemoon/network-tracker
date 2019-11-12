@@ -51,7 +51,8 @@ class App extends Component {
       });
       console.log("jsonres:", jsonRes.data);
       // console.log("networks:", networks);
-
+      console.log("state networks", this.state.networks);
+      
     });
 
   };
@@ -138,7 +139,8 @@ class App extends Component {
                 formData={this.state.authFormData} />)} />
                 <Route exact path="/networks" render={() => (
               <AllNetworks
-                  getAllNetworks={this.getAllNetworks}
+                getAllNetworks={this.getAllNetworks}
+                networks={this.state.networks}
                 currentUser={this.state.currentUser}
                 handleLogin={this.handleLogin}
                 handleChange={this.authHandleChange}

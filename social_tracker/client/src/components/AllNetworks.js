@@ -7,10 +7,11 @@ class AllNetworks extends Component {
 
     componentDidMount = (props) => {
         console.log(this.props.network);
-        
         if ( !this.props.networksLoaded) {
-            props.getAllNetworks()
+            this.props.getAllNetworks()
         }
+        console.log("networks", this.props.networks);
+        
     }
 
     render() {
