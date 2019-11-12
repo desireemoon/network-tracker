@@ -5,8 +5,9 @@ import axios from "axios";
 
 import Login from './components/Login'
 import Register from './components/Register'
+import AllNetworks from './components/AllNetworks';
 import Header from './components/Header'
-import Main from './components/Main'
+import Home from './components/Home'
 import Footer from './components/Footer'
 
 import './App.css';
@@ -21,7 +22,7 @@ import {
   registerUser,
   verifyUser
 } from './services/api-helper'
-import AllNetworks from './components/AllNetworks';
+
 
 
 class App extends Component {
@@ -76,8 +77,10 @@ class App extends Component {
   handleLogin = async () => {
     const currentUser = await loginUser(this.state.authFormData);
     this.setState({ currentUser });
-    console.log("auth data:",  this.state.authFormData);
+    console.log("auth data:", this.state.authFormData);
+    console.log("current user:", this.state.currentUser);
     
+
   }
 
   handleRegister = async (e) => {
@@ -107,7 +110,6 @@ class App extends Component {
     return (
       <div className="App">
         <header>
-
           <Header
             currentUser={this.state.currentUser}
             handleLogout={this.handleLogout}
@@ -115,57 +117,37 @@ class App extends Component {
           />
         </header>
         <main>
-          {/* <div>
-          {this.state.currentUser
-            ?
-            <>
-              <p>{this.state.currentUser.username}</p>
-              <button onClick={this.handleLogout}>logout</button>
-            </>
-            :
-            <button onClick={this.handleLoginButton}>Login/register</button>
-          }
-        </div> */}
-          {/* <Main
-            getAllNetworks={this.getAllNetworks}
-            networks={this.state.networks}
-            networksLoaded={this.state.networksLoaded}
-            setNetwork={this.setNetwork}
-            handleLogin={this.handleLogin}
-            handleChange={this.authHandleChange}
-            formData={this.state.authFormData}
-            handleRegister={this.handleRegister}
-          /> */}
           <Switch>
             <Route
               exact path="/"
               render={() => (
-                <AllNetworks
-                  getAllNetworks={this.getAllNetworks}
-                  networks={this.state.networks}
-                  networksLoaded={this.state.networksLoaded}
-                  setNetwork={this.setNetwork}
-                />
+                <Home />
               )}
             />
             <Route exact path="/login" render={() => (
               <Login
+                currentUser={this.state.currentUser}
                 handleLogin={this.handleLogin}
                 handleChange={this.authHandleChange}
                 formData={this.state.authFormData} />)} />
             <Route exact path="/register" render={() => (
               <Register
+                currentUser={this.state.currentUser}
                 handleRegister={this.handleRegister}
+                handleChange={this.authHandleChange}
+                formData={this.state.authFormData} />)} />
+                <Route exact path="/networks" render={() => (
+              <AllNetworks
+                  getAllNetworks={this.getAllNetworks}
+                currentUser={this.state.currentUser}
+                handleLogin={this.handleLogin}
                 handleChange={this.authHandleChange}
                 formData={this.state.authFormData} />)} />
           </Switch>
         </main>
         <footer>
-
           <Footer />
         </footer>
-
-
       </div>
     );
   }

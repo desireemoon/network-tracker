@@ -10,7 +10,9 @@ export const loginUser = async (loginData) => {
   const resp = await api.post('/auth/login', loginData)
   localStorage.setItem('authToken', resp.data.token);
   api.defaults.headers.common.authorization = `Bearer ${resp.data.token}`
+  
   return resp.data
+  
 }
 
 export const registerUser = async (registerData) => {
@@ -18,7 +20,6 @@ export const registerUser = async (registerData) => {
   localStorage.setItem('authToken', resp.data.token);
   api.defaults.headers.common.authorization = `Bearer ${resp.data.token}`
   console.log("resp.data:", resp.data);
-  console.log("resp.data.user:", resp.data.user);
   
   return resp.data
   

@@ -5,9 +5,11 @@ import { withRouter } from 'react-router-dom';
 
 class AllNetworks extends Component {
 
-    componentDidMount() {
-        if (!this.props.networksLoaded) {
-            this.props.getAllNetworks()
+    componentDidMount = (props) => {
+        console.log(this.props.network);
+        
+        if ( !this.props.networksLoaded) {
+            props.getAllNetworks()
         }
     }
 
