@@ -17,7 +17,7 @@ const Header = (props) => {
                     <Link to="/networks">Network List</Link>
                 </div>
                 <div className="nav-button">
-                    <Link>People list</Link>
+                    <Link to="/people">People list</Link>
                 </div>
                 <div className="nav-button">
                     {props.currentUser

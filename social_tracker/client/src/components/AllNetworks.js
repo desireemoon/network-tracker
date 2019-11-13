@@ -6,12 +6,11 @@ import { withRouter } from 'react-router-dom';
 class AllNetworks extends Component {
 
     componentDidMount = (props) => {
-        console.log(this.props.network);
+        console.log("props networks", this.props.networks);
         if ( !this.props.networksLoaded) {
             this.props.getAllNetworks()
         }
-        console.log("networks", this.props.networks);
-        
+        console.log("networks", this.props.networks);  
     }
 
     render() {

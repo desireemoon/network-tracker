@@ -8,8 +8,23 @@ import { withRouter } from 'react-router-dom';
 const Footer = (props) => {
 
     return (
-        <div className="header-container">
-            <h2>Footer Boi woop woop</h2>
+        <div className="footer-container">
+            <div class="social-title">
+                <h2 className="footer-h2">Connect with the programmer</h2>
+            </div>
+            <div class="social-links"> 
+                <a href="https://git.generalassemb.ly/desireemoon/network-tracker">README</a>    
+            </div>
+            <div class="social-links"> 
+                <a href="https://www.linkedin.com/in/desiree-dewysocki">LinkedIn</a>
+            </div>
+            <div class="social-links"> 
+                <a href="https://github.com/desireemoon">Github</a>
+            </div>
+            <div class="social-links"> 
+                <a href="mailto:desiree.dewysocki@gmail.com">Email</a>    
+            </div>
+            
         </div>
     );
 }
