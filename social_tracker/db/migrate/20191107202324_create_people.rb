@@ -2,7 +2,6 @@ class CreatePeople < ActiveRecord::Migration[6.0]
   def change
     create_table :people do |t|
       t.string :name
-      t.string :picture
       t.string :relation
       t.date :virtual_interaction
       t.date :irl_interaction

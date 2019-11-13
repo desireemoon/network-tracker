@@ -4,13 +4,13 @@ class PeopleController < ApiController
     
     def index
         @people = Person.all
-        render json: @people, status: :ok 
+        render json: @people
     end 
     
     def show
         begin
             @person = Person.find(params[:id])
-            render json: @people, status: :ok 
+            render json: @person, status: :ok 
         rescue ActiveRecord::RecordNotFound
             render json: {
                 message: "Person not found with that ID"
