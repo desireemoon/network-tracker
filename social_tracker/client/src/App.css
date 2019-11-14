@@ -1,6 +1,6 @@
 body {
   height: 100vh;
-  min-width: 67vh;
+  min-width: 100vw;
 }
 .App {
   height: 100%;
