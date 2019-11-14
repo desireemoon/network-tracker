@@ -13,8 +13,14 @@ const Header = (props) => {
             <Link to="/"><h1>Network Tracker</h1></Link>
             </div>
             <div className="nav">
+            <div className="nav-button">
+                    <Link to="/networks">Create Network</Link>
+                </div>
                 <div className="nav-button">
                     <Link to="/networks">Network List</Link>
+                </div>
+                <div className="nav-button">
+                    <Link to="/new/person">Create Person</Link>
                 </div>
                 <div className="nav-button">
                     <Link to="/people">People list</Link>

@@ -6,14 +6,19 @@ import axios from "axios";
 import Header from './components/Header'
 import Home from './components/Home'
 import Footer from './components/Footer'
+
 import Login from './components/Login'
 import UserProfile from './components/UserProfile'
 import Register from './components/Register'
+
 import AllNetworks from './components/AllNetworks';
 import NetworksContainer from './components/NetworkContainer'
+import CreateNetwork from './components/CreateNetwork'
+
 import AllPeople from './components/AllPeople'
 import PeopleContainer from './components/PeopleContainer';
 import PeopleForm from './components/PeopleForm';
+import PersonCreation from './components/CreatePerson'
 
 import './App.css';
 
@@ -42,10 +47,25 @@ class App extends Component {
       networks: [],
       currentNetwork: {},
       networksLoaded: false,
+      networkForm: {
+        name: "",
+        photo: "",
+        people: []
+      },
       people: [],
       currentPerson: {},
       peopleLoaded: false,
       currentUser: null,
+      personForm: {
+        name: "",
+        relation: '',
+        virtual_interaction: '',
+        irl_interaction: '',
+        phone: '',
+        email: '',
+        address: '',
+        notes: "",
+      },
       authFormData: {
         name: "",
         username: "",
@@ -53,6 +73,15 @@ class App extends Component {
         password: ""
       }
     };
+  }
+
+  async componentDidMount() {
+    this.getAllNetworks();
+    this.getAllPeople();
+    const currentUser = await verifyUser();
+    if (currentUser) {
+      this.setState({ currentUser })
+    }
   }
 
   // -------------- AUTH ------------------
@@ -93,22 +122,35 @@ class App extends Component {
   }
 
   // -------------- Networks ------------------
-  getAllNetworks = () => {
-    axios.get("/api/networks").then(jsonRes => {
-      this.setState({
-        networks: jsonRes.data,
-        networksLoaded: true
-      });
-      console.log("jsonres:", jsonRes.data);
-      // console.log("networks:", networks);
-      console.log("state networks", this.state.networks);
-    });
-  };
+  // getAllNetworks = () => {
+  //   axios.get("/api/networks").then(jsonRes => {
+  //     this.setState({
+  //       networks: jsonRes.data,
+  //       networksLoaded: true
+  //     });
+  //     console.log("jsonres:", jsonRes.data);
+  //     // console.log("networks:", networks);
+  //     console.log("state networks", this.state.networks);
+  //   });
+  // };
 
-  handleDeleteNetwork = (removedNetwork) => {
+  getAllNetworks = async () => {
+    const networks = await readAllNetworks();
     this.setState({
-      networks: this.state.networks.filter(network => network.id !== removedNetwork.id)
+      networks: networks,
+      networksLoaded: true
     })
+  }
+  newNetwork = async (e) => {
+    e.preventDefault();
+    const network = await createNetwork(this.state.networkForm);
+    this.setState(prevState => ({
+      networks: [...prevState.networks, network],
+      networkForm: {
+        name: "",
+        photo: ""
+      }
+    }))
   }
 
   setNetwork = (network) => {
@@ -117,22 +159,58 @@ class App extends Component {
     });
   };
 
-  // -------------- People ------------------
-  getAllPeople = () => {
-    axios.get("/api/people").then(jsonRes => {
-      this.setState({
-        people: jsonRes.data,
-        peopleLoaded: true
-      });
-      console.log("jsonres:", jsonRes.data);
-      // console.log("people:", people);
-      console.log("state people", this.state.people);
-    });
-  };
+  editNetwork = async () => {
+    const { networkForm } = this.state
+    await updateNetwork(networkForm.id, networkForm);
+    this.setState(prevState => (
+      {
+        networks: prevState.networks.map(network => network.id === networkForm.id ? networkForm : network),
+      }
+    ))
+  }
 
-  handleDeletePerson = (removedPerson) => {
+  deleteNetwork = async (id) => {
+    await destroyNetwork(id);
+    this.setState(prevState => ({
+      networks: prevState.networks.filter(network => network.id !== id)
+    }))
+  }
+
+  networkHandleFormChange = (e) => {
+    const { name, value } = e.target;
+    this.setState(prevState => ({
+      networkForm: {
+        ...prevState.networkForm,
+        [name]: value
+      }
+    }))
+  }
+
+  networkMountEditForm = async (id) => {
+    const networks = await readAllNetworks();
+    const network = networks.find(el => el.id === parseInt(id));
     this.setState({
-      people: this.state.people.filter(person => person.id !== removedPerson.id)
+      networkForm: network
+    });
+  }
+  // -------------- People ------------------
+  // getAllPeople = () => {
+  //   axios.get("/api/people").then(jsonRes => {
+  //     this.setState({
+  //       people: jsonRes.data,
+  //       peopleLoaded: true
+  //     });
+  //     console.log("jsonres:", jsonRes.data);
+  //     // console.log("people:", people);
+  //     console.log("state people", this.state.people);
+  //   });
+  // };
+
+  getAllPeople = async () => {
+    const people = await readAllPeople();
+    this.setState({
+      people: people,
+      peopleLoaded: true
     })
   }
 
@@ -142,9 +220,55 @@ class App extends Component {
       currentPerson: person
     });
     console.log("state current person", this.state.currentPerson);
-    
+
   };
 
+  newPerson = async (e) => {
+    e.preventDefault();
+    const person = await createPerson(this.state.personForm);
+    this.setState(prevState => ({
+      people: [...prevState.people, person],
+      personForm: {
+        name: "",
+        photo: ""
+      }
+    }))
+  }
+
+  editPerson = async () => {
+    const { personForm } = this.state
+    await updatePerson(personForm.id, personForm);
+    this.setState(prevState => (
+      {
+        people: prevState.people.map(person => person.id === personForm.id ? personForm : person),
+      }
+    ))
+  }
+
+  deletePerson = async (id) => {
+    await destroyPerson(id);
+    this.setState(prevState => ({
+      people: prevState.people.filter(person => person.id !== id)
+    }))
+  }
+
+  personHandleFormChange = (e) => {
+    const { name, value } = e.target;
+    this.setState(prevState => ({
+      personForm: {
+        ...prevState.personForm,
+        [name]: value
+      }
+    }))
+  }
+
+  personMountEditForm = async (id) => {
+    const people = await readAllPeople();
+    const person = people.find(el => el.id === parseInt(id));
+    this.setState({
+      personForm: person
+    });
+  }
 
   render() {
     return (
@@ -180,7 +304,7 @@ class App extends Component {
               <UserProfile
                 currentUser={this.state.currentUser}
                 handl
-                 />)} />
+              />)} />
             <Route exact path="/networks" render={() => (
               <AllNetworks
                 getAllNetworks={this.getAllNetworks}
@@ -189,17 +313,25 @@ class App extends Component {
                 networksLoaded={this.networksLoaded}
                 setNetwork={this.setNetwork}
               />)} />
-              <Route exact path="/networks/:id" render={() => (
+            <Route exact path="/networks/:id" render={() => (
               <NetworksContainer
                 currentUser={this.state.currentUser}
                 currentNetwork={this.state.currentNetwork}
                 getAllNetworks={this.getAllNetworks}
                 networks={this.state.networks}
                 networksLoaded={this.networksLoaded}
-                setNetwork={this.setNetwork} 
+                setNetwork={this.setNetwork}
                 setPerson={this.setPerson}
-                handleDeleteNetwork={this.handleDeleteNetwork}/>)}
+                handleDeleteNetwork={this.handleDeleteNetwork} />)}
             />
+            <Route
+              path="/new/network"
+              render={() => (
+                <CreateNetwork
+                  handleFormChange={this.networkHandleFormChange}
+                  networkForm={this.state.networkForm}
+                  newNetwork={this.newNetwork} />
+              )} />
             <Route exact path="/people" render={() => (
               <AllPeople
                 currentUser={this.state.currentUser}
@@ -208,15 +340,15 @@ class App extends Component {
                 peopleLoaded={this.peopleLoaded}
                 setPerson={this.setPerson} />)}
             />
-             <Route exact path="/people/:id" render={() => (
+            {/* <Route exact path="/people/:id" render={() => (
               <PeopleContainer
                 currentUser={this.state.currentUser}
                 currentPerson={this.state.currentPerson}
                 getAllPeople={this.getAllPeople}
                 people={this.state.people}
                 peopleLoaded={this.peopleLoaded}
-                setPerson={this.setPerson} 
-                handleDeletePerson={this.handleDeletePerson}/>)}
+                setPerson={this.setPerson}
+                handleDeletePerson={this.handleDeletePerson} />)}
             />
             <Route exact path="/people/:id/edit" render={() => (
               <PeopleForm
@@ -225,8 +357,38 @@ class App extends Component {
                 getAllPeople={this.getAllPeople}
                 people={this.state.people}
                 peopleLoaded={this.peopleLoaded}
-                setPerson={this.setPerson} 
-                />)}
+                setPerson={this.setPerson}
+              />)}
+            /> */}
+            <Route
+              path="/new/person"
+              render={() => (
+                <PersonCreation
+                  handleFormChange={this.personHandleFormChange}
+                  personForm={this.state.personForm}
+                  newPerson={this.newPerson} />
+              )} />
+            <Route
+              path="/people/:id"
+              render={(props) => {
+                const { id } = props.match.params;
+                const person = this.state.people.find(el => el.id === parseInt(id));
+                return <PeopleContainer
+                  id={id}
+                  person={person}
+                  handleFormChange={this.personHandleFormChange}
+                  mountEditForm={this.personMountEditForm}
+                  editPerson={this.editPerson}
+                  personForm={this.state.personForm}
+                  deletePerson={this.deletePerson}
+                  currentUser={this.state.currentUser}
+                  currentPerson={this.state.currentPerson}
+                  getAllPeople={this.getAllPeople}
+                  people={this.state.people}
+                  peopleLoaded={this.peopleLoaded}
+                  setPerson={this.setPerson}
+                />
+              }}
             />
           </Switch>
         </main>

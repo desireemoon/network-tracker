@@ -47,7 +47,7 @@ const updateNetwork = async (id, data) => {
   const resp = await api.put(`/api/networks/${id}`, { network: data })
   return resp.data
 }
-
+//people: person
 const destroyNetwork = async (id) => {
   const resp = await api.delete(`/api/networks/${id}`)
   return resp.data

@@ -31,6 +31,8 @@ footer {
 /* Header */
 .header-container {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .app-title{
@@ -39,11 +41,13 @@ footer {
 .nav {
   margin-left: auto;
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   align-items: center;
 }
 
 .nav-button {
-  padding: 0 10px;
+  padding: 0 5px;
 }
 
 .log-buttons{
@@ -67,3 +71,4 @@ footer {
 .login-buttons {
   padding: 10px;
 }
+

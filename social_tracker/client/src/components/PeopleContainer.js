@@ -25,35 +25,6 @@ class PeopleContainer extends Component {
             <p>{this.props.currentPerson.relation}</p>
             <p>{this.props.currentPerson.virtual_interaction}</p>
             <p>{this.props.currentPerson.irl_interaction}</p>
-
-            {/* <img alt={currentPerson.name} src={currentPerson.photo} /> */}
-            {/* {this.state.isEdit ?
-              <Route path={'/people/:id/edit'} render={() => (
-                <EditTeacher
-                  handleFormChange={this.props.handleFormChange}
-                  handleSubmit={(e) => {
-                    e.preventDefault();
-                    this.props.editTeacher();
-                    this.setState({ isEdit: false })
-                    this.props.history.push(`/teachers/${this.props.teacherForm.id}`)
-                  }}
-                  teacherForm={this.props.teacherForm} />
-              )} />
-              :
-              <>
-                <h1>{teacher.name}</h1>
-                <button onClick={() => {
-                  this.setState({
-                    isEdit: true
-                  })
-                  this.props.history.push(`/teachers/${teacher.id}/edit`)
-                }}>Edit</button>
-                <button onClick={() => {
-                  this.props.deleteTeacher(teacher.id);
-                  this.props.history.push('/')
-                }}>Delete</button>
-              </>
-            } */}
           </div>)}
       </div>)
   }
