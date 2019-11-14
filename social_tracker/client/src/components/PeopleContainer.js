@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
 
+
 class PeopleContainer extends Component {
   constructor(props) {
     super(props);

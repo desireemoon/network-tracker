@@ -10,8 +10,10 @@ import Login from './components/Login'
 import UserProfile from './components/UserProfile'
 import Register from './components/Register'
 import AllNetworks from './components/AllNetworks';
+import NetworksContainer from './components/NetworkContainer'
 import AllPeople from './components/AllPeople'
-
+import PeopleContainer from './components/PeopleContainer';
+import PeopleForm from './components/PeopleForm';
 
 import './App.css';
 
@@ -29,7 +31,7 @@ import {
   updatePerson,
   destroyPerson
 } from './services/api-helper'
-import PeopleContainer from './components/PeopleContainer';
+
 
 
 
@@ -187,6 +189,17 @@ class App extends Component {
                 networksLoaded={this.networksLoaded}
                 setNetwork={this.setNetwork}
               />)} />
+              <Route exact path="/networks/:id" render={() => (
+              <NetworksContainer
+                currentUser={this.state.currentUser}
+                currentNetwork={this.state.currentNetwork}
+                getAllNetworks={this.getAllNetworks}
+                networks={this.state.networks}
+                networksLoaded={this.networksLoaded}
+                setNetwork={this.setNetwork} 
+                setPerson={this.setPerson}
+                handleDeleteNetwork={this.handleDeleteNetwork}/>)}
+            />
             <Route exact path="/people" render={() => (
               <AllPeople
                 currentUser={this.state.currentUser}
@@ -202,7 +215,18 @@ class App extends Component {
                 getAllPeople={this.getAllPeople}
                 people={this.state.people}
                 peopleLoaded={this.peopleLoaded}
-                setPerson={this.setPerson} />)}
+                setPerson={this.setPerson} 
+                handleDeletePerson={this.handleDeletePerson}/>)}
+            />
+            <Route exact path="/people/:id/edit" render={() => (
+              <PeopleForm
+                currentUser={this.state.currentUser}
+                currentPerson={this.state.currentPerson}
+                getAllPeople={this.getAllPeople}
+                people={this.state.people}
+                peopleLoaded={this.peopleLoaded}
+                setPerson={this.setPerson} 
+                />)}
             />
           </Switch>
         </main>

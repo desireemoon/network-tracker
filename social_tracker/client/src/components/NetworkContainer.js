@@ -1,4 +1,7 @@
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
+
 
 class NetworkContainer extends Component {
   constructor(props) {
@@ -8,19 +11,29 @@ class NetworkContainer extends Component {
     }
   }
 
-  componentDidMount() {
-    this.props.mountEditForm(this.props.id);
-  }
-
+  // componentDidMount() {
+  //   this.props.mountEditForm(this.props.id);
+  // }
   render() {
-    const { teacher } = this.props;
+    console.log(this.props.currentNetwork);
+    
     return (
-      <div className="teacher-page">
-        {teacher === undefined ? <h2>Loading . . .</h2> : (
+      <div className="currentNetwork-page">
+        {this.props.currentNetwork === undefined ? <h2>Loading . . .</h2> : (
           <div>
-            <img alt={teacher.name} src={teacher.photo} />
-            {this.state.isEdit ?
-              <Route path={'/teachers/:id/edit'} render={() => (
+            <h2>{this.props.currentNetwork.name}</h2>
+            <p>{this.props.currentNetwork.network_type}</p>
+            <p>{this.props.currentNetwork.description}</p>
+            {this.props.currentNetwork && this.props.currentNetwork.people.map(person => (
+              <div className="person-box" key={person.id}>
+                {console.log(person)}
+                <Link to={`/people/${person.id}`} onClick={() => this.props.setPerson(person)}>{person.name}</Link>
+              </div>
+            ))}
+
+            {/* <img alt={currentPerson.name} src={currentPerson.photo} /> */}
+            {/* {this.state.isEdit ?
+              <Route path={'/people/:id/edit'} render={() => (
                 <EditTeacher
                   handleFormChange={this.props.handleFormChange}
                   handleSubmit={(e) => {
@@ -45,7 +58,7 @@ class NetworkContainer extends Component {
                   this.props.history.push('/')
                 }}>Delete</button>
               </>
-            }
+            } */}
           </div>)}
       </div>)
   }
