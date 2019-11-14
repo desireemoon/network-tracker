@@ -22,10 +22,10 @@ const Header = (props) => {
                 <div className="nav-button">
                     {props.currentUser
                         ?
-                        <>
-                            <p>{ props.currentUser.user ? props.currentUser.user.name: props.currentUser.name}</p>
-                            <Link onClick={props.handleLogout}>logout</Link>
-                        </>
+                        <div className="log-buttons">
+                            <div className="log"><Link to={ props.currentUser.user ? `/user/${props.currentUser.user.username}`: `/user/${props.currentUser.username}`}>{ props.currentUser.user ? props.currentUser.user.name: props.currentUser.name}'s Profile</Link></div>
+                            <div className="log"><Link onClick={props.handleLogout}>logout</Link></div>
+                        </div>
                         :
                         <Link to="/login" onClick={props.handleLoginButton}>Login/register</Link>
                     }

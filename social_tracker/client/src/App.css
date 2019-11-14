@@ -39,6 +39,15 @@ footer {
   padding: 10px;
 }
 
+.log-buttons{
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.log {
+  padding: 5px;
+}
+
 /* login */
 
 .auth-container {

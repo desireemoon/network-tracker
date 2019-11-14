@@ -16,7 +16,8 @@ class AllPeople extends Component {
       <div className="person-container">
         {this.props.people && this.props.people.map(person => (
           <div className="person-box" key={person.id}>
-            <Link to={`/people/${person.id}`} onClick={() => this.props.setPeople(person)}>{person.name}</Link>
+            {console.log(person)}
+            <Link to={`/people/${person.id}`} onClick={() => this.props.setPerson(person)}>{person.name}</Link>
           </div>
         )
         )}

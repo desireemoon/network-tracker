@@ -1,6 +1,8 @@
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
 
-class TeachersView extends Component {
+class PeopleContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -8,19 +10,24 @@ class TeachersView extends Component {
     }
   }
 
-  componentDidMount() {
-    this.props.mountEditForm(this.props.id);
-  }
-
+  // componentDidMount() {
+  //   this.props.mountEditForm(this.props.id);
+  // }
   render() {
-    const { teacher } = this.props;
+    console.log(this.props.currentPerson);
+    
     return (
-      <div className="teacher-page">
-        {teacher === undefined ? <h2>Loading . . .</h2> : (
+      <div className="currentPerson-page">
+        {this.props.currentPerson === undefined ? <h2>Loading . . .</h2> : (
           <div>
-            <img alt={teacher.name} src={teacher.photo} />
-            {this.state.isEdit ?
-              <Route path={'/teachers/:id/edit'} render={() => (
+            <h2>{this.props.currentPerson.name}</h2>
+            <p>{this.props.currentPerson.relation}</p>
+            <p>{this.props.currentPerson.virtual_interaction}</p>
+            <p>{this.props.currentPerson.irl_interaction}</p>
+
+            {/* <img alt={currentPerson.name} src={currentPerson.photo} /> */}
+            {/* {this.state.isEdit ?
+              <Route path={'/people/:id/edit'} render={() => (
                 <EditTeacher
                   handleFormChange={this.props.handleFormChange}
                   handleSubmit={(e) => {
@@ -45,7 +52,7 @@ class TeachersView extends Component {
                   this.props.history.push('/')
                 }}>Delete</button>
               </>
-            }
+            } */}
           </div>)}
       </div>)
   }

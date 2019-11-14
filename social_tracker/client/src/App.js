@@ -7,6 +7,7 @@ import Header from './components/Header'
 import Home from './components/Home'
 import Footer from './components/Footer'
 import Login from './components/Login'
+import UserProfile from './components/UserProfile'
 import Register from './components/Register'
 import AllNetworks from './components/AllNetworks';
 import AllPeople from './components/AllPeople'
@@ -28,6 +29,7 @@ import {
   updatePerson,
   destroyPerson
 } from './services/api-helper'
+import PeopleContainer from './components/PeopleContainer';
 
 
 
@@ -51,44 +53,44 @@ class App extends Component {
     };
   }
 
-// -------------- AUTH ------------------
+  // -------------- AUTH ------------------
 
-handleLoginButton = () => {
-  this.props.history.push("/login")
-}
+  handleLoginButton = () => {
+    this.props.history.push("/login")
+  }
 
-handleLogin = async () => {
-  const currentUser = await loginUser(this.state.authFormData);
-  this.setState({ currentUser });
-  // console.log("auth data:", this.state.authFormData);
-  // console.log("current user:", this.state.currentUser);
-}
+  handleLogin = async () => {
+    const currentUser = await loginUser(this.state.authFormData);
+    this.setState({ currentUser });
+    // console.log("auth data:", this.state.authFormData);
+    console.log("current user:", this.state.currentUser);
+  }
 
-handleRegister = async (e) => {
-  e.preventDefault();
-  const currentUser = await registerUser(this.state.authFormData);
-  console.log("new register", currentUser);
-  // this.setState({ currentUser });
-}
+  handleRegister = async (e) => {
+    e.preventDefault();
+    const currentUser = await registerUser(this.state.authFormData);
+    console.log("new register", currentUser);
+    // this.setState({ currentUser });
+  }
 
-handleLogout = () => {
-  localStorage.removeItem("jwt");
-  this.setState({
-    currentUser: null
-  })
-}
+  handleLogout = () => {
+    localStorage.removeItem("jwt");
+    this.setState({
+      currentUser: null
+    })
+  }
 
-authHandleChange = (e) => {
-  const { name, value } = e.target;
-  this.setState(prevState => ({
-    authFormData: {
-      ...prevState.authFormData,
-      [name]: value
-    }
-  }));
-}
+  authHandleChange = (e) => {
+    const { name, value } = e.target;
+    this.setState(prevState => ({
+      authFormData: {
+        ...prevState.authFormData,
+        [name]: value
+      }
+    }));
+  }
 
-// -------------- Networks ------------------
+  // -------------- Networks ------------------
   getAllNetworks = () => {
     axios.get("/api/networks").then(jsonRes => {
       this.setState({
@@ -113,30 +115,33 @@ authHandleChange = (e) => {
     });
   };
 
-// -------------- People ------------------
-getAllPeople = () => {
-  axios.get("/api/people").then(jsonRes => {
-    this.setState({
-      people: jsonRes.data,
-      peopleLoaded: true
+  // -------------- People ------------------
+  getAllPeople = () => {
+    axios.get("/api/people").then(jsonRes => {
+      this.setState({
+        people: jsonRes.data,
+        peopleLoaded: true
+      });
+      console.log("jsonres:", jsonRes.data);
+      // console.log("people:", people);
+      console.log("state people", this.state.people);
     });
-    console.log("jsonres:", jsonRes.data);
-    // console.log("people:", people);
-    console.log("state people", this.state.people);
-  });
-};
+  };
 
-handleDeletePerson = (removedPerson) => {
-  this.setState({
-    people: this.state.people.filter(person => person.id !== removedPerson.id)
-  })
-}
+  handleDeletePerson = (removedPerson) => {
+    this.setState({
+      people: this.state.people.filter(person => person.id !== removedPerson.id)
+    })
+  }
 
-setPerson = (person) => {
-  this.setState({
-    currentPerson: person
-  });
-};
+  setPerson = (person) => {
+    console.log("does person come thru", person);
+    this.setState({
+      currentPerson: person
+    });
+    console.log("state current person", this.state.currentPerson);
+    
+  };
 
 
   render() {
@@ -169,25 +174,36 @@ setPerson = (person) => {
                 handleRegister={this.handleRegister}
                 handleChange={this.authHandleChange}
                 formData={this.state.authFormData} />)} />
+            <Route exact path="/user/:username" render={() => (
+              <UserProfile
+                currentUser={this.state.currentUser}
+                handl
+                 />)} />
             <Route exact path="/networks" render={() => (
               <AllNetworks
                 getAllNetworks={this.getAllNetworks}
                 networks={this.state.networks}
                 currentUser={this.state.currentUser}
-                // handleLogin={this.handleLogin}
-                // handleChange={this.authHandleChange}
-                // formData={this.state.authFormData}
                 networksLoaded={this.networksLoaded}
                 setNetwork={this.setNetwork}
-                 />)} />
+              />)} />
             <Route exact path="/people" render={() => (
-              <AllPeople 
-              currentUser={this.state.currentUser}
-              getAllPeople={this.getAllPeople}
-              people={this.state.people} 
-              peopleLoaded={this.peopleLoaded}
-              setPerson={this.setPerson}/>)}
-               />
+              <AllPeople
+                currentUser={this.state.currentUser}
+                getAllPeople={this.getAllPeople}
+                people={this.state.people}
+                peopleLoaded={this.peopleLoaded}
+                setPerson={this.setPerson} />)}
+            />
+             <Route exact path="/people/:id" render={() => (
+              <PeopleContainer
+                currentUser={this.state.currentUser}
+                currentPerson={this.state.currentPerson}
+                getAllPeople={this.getAllPeople}
+                people={this.state.people}
+                peopleLoaded={this.peopleLoaded}
+                setPerson={this.setPerson} />)}
+            />
           </Switch>
         </main>
         <footer>
