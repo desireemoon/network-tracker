@@ -34,7 +34,12 @@ export const verifyUser = async () => {
 
 // Network
 const createNetwork = async (data) => {
+  console.log("create date", data);
   const resp = await api.post('/api/networks', { network: data })
+
+  console.log("create resp", resp);
+  
+  
   return resp.data
 }
 

@@ -2,10 +2,12 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 
 function NetworkCreation(props) {
+
+    
     return (
         <div className="auth-container" >
             <h2>Create a new Network</h2>
-            <form onSubmit={props.newNetwork}>
+            <div >
                 <p>*Network name:</p>
                 <input
                     type="text"
@@ -35,15 +37,19 @@ function NetworkCreation(props) {
                     onChange={props.handleFormChange}
                     required />
                 {/* <p>Add People:</p>
-                <input
-                    type="tel"
-                    name="people"
-                    value={props.networkForm.people}
-                    onChange={props.handleFormChange} /> */}
+                {props.people.map(person => {
+                    return (
+                        <div className="person-containers">
+                            <p>{person.name}</p>
+                            {props.people.includes({ 'id': person.id }) ?
+                                <button onClick={() => props.handleRemoveClick(person)}>Remove</button> : <button value="Add" onClick={() => props.handleAddClick(person)}>Add</button>}
+                        </div>
+                    )
+                })} */}
                 <div className="login-buttons">
-                    <input className="submit" type="submit" />
+                    <button onClick={props.newNetwork} className="submit">Submit</button> 
                 </div>
-            </form>
+            </div>
             <p>* Indicates the field is required.</p>
         </div >
     )

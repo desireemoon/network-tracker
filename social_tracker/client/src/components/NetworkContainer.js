@@ -32,7 +32,10 @@ class NetworkContainer extends Component {
                     this.setState({ isEdit: false })
                     this.props.history.push(`/networks/${this.props.networkForm.id}`)
                   }}
-                  networkForm={this.props.networkForm} />
+                  networkForm={this.props.networkForm}
+                  handleAddClick={this.props.handleAddClick}
+                  handleRemoveClick={this.props.handleRemoveClick}
+                  people={this.props.people} />
               )} />
               :
               <div className="auth-container">

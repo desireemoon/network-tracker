@@ -185,6 +185,33 @@ class App extends Component {
       networkForm: network
     });
   }
+
+   handleAddClick = (id) => {
+    this.setState(prevState => ({
+        networkForm: {
+          ...prevState.networkForm,
+            people: [
+                ...prevState.networkForm.people,
+                // {id: id}
+                id
+            ]
+        }
+    })
+    )
+    console.log("network peeps", this.state.networkForm.people);
+    
+}
+
+ handleRemoveClick = (id) => {
+    const updatedPeople = this.state.networkForm.people.filter(person => (
+        person.id != id.id
+    ))
+    this.setState({
+        networkForm: {
+            people: updatedPeople     
+        }
+    })
+}
   // -------------- People ------------------
   getAllPeople = async () => {
     const people = await readAllPeople();
@@ -302,7 +329,11 @@ class App extends Component {
                 <NetworkCreation
                   handleFormChange={this.networkHandleFormChange}
                   networkForm={this.state.networkForm}
-                  newNetwork={this.newNetwork} />
+                  newNetwork={this.newNetwork}
+                  people={this.state.people}
+                  handleAddClick={this.handleAddClick}
+                  handleRemoveClick={this.handleRemoveClick}
+                   />
               )} />
              <Route
               path="/networks/:id"
@@ -317,6 +348,9 @@ class App extends Component {
                   editNetwork={this.editNetwork}
                   networkForm={this.state.networkForm}
                   deleteNetwork={this.deleteNetwork}
+                  handleAddClick={this.handleAddClick}
+                  handleRemoveClick={this.handleRemoveClick}
+                  people={this.state.people}
                 />
               }}
               />

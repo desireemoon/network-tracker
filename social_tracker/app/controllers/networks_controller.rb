@@ -29,7 +29,8 @@ class NetworksController < ApiController
           if network.save 
               render json: {
                   message: "ok",
-                  network: network
+                  network: network,
+                  include: :people
               }
           else 
               render json: {
@@ -42,7 +43,8 @@ class NetworksController < ApiController
         if @network.update(network_params)
             render json: {
                 message: "ok",
-                network: @network
+                network: @network,
+                include: :people
             }
         else 
             render json: {
@@ -66,6 +68,6 @@ class NetworksController < ApiController
     end
   
     def network_params
-      params.require(:network).permit(:name, :type, :description, :user_id)
+      params.require(:network).permit(:name, :type, :description, :user_id, :people)
     end
 end
