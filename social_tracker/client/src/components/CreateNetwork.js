@@ -11,16 +11,14 @@ function NetworkCreation(props) {
                     type="text"
                     name="name"
                     value={props.networkForm.name}
-                    onChange={props.handleFormChange} />
-                
+                    onChange={props.handleFormChange}
+                    required />
                 <p>*Network Type:</p>
-                {/* <label htmlFor="network_type">Network Type:</label> */}
-                <select name="network_type" value={props.networkForm.network_type} required>
-                    <option value="Family">Family</option>
-                    <option value="Friends">Friends</option>
-                    <option value="Work">Work</option>
-                    <option value="Other">Other</option>
-                </select>
+                <input
+                    type="text"
+                    name="network_type"
+                    value={props.networkForm.network_type}
+                    onChange={props.handleFormChange} />
                 <p>*Description:</p>
                 <input
                     type="text"

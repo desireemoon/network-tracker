@@ -14,13 +14,6 @@ const NetworkForm = (props) => {
                     name="name"
                     value={props.networkForm.name}
                     onChange={props.handleFormChange} />
-                <label htmlFor="network_type">Network Type</label>
-                <select name="network_type" value={props.networkForm.network_type} required>
-                    <option value="Family">Family</option>
-                    <option value="Friends">Friends</option>
-                    <option value="Work">Work</option>
-                    <option value="Other">Other</option>
-                </select>
                 <p>*Network Type:</p>
                 <input
                     type="text"

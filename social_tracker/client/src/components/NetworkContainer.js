@@ -23,14 +23,14 @@ class NetworkContainer extends Component {
         {network === undefined ? <h2>Loading . . .</h2> : (
           <div>
             {this.state.isEdit ?
-              <Route path={'/people/:id/edit'} render={() => (
+              <Route path={'/networks/:id/edit'} render={() => (
                 <EditNetwork
                   handleFormChange={this.props.handleFormChange}
                   handleSubmit={(e) => {
                     e.preventDefault();
                     this.props.editNetwork();
                     this.setState({ isEdit: false })
-                    this.props.history.push(`/people/${this.props.networkForm.id}`)
+                    this.props.history.push(`/networks/${this.props.networkForm.id}`)
                   }}
                   networkForm={this.props.networkForm} />
               )} />

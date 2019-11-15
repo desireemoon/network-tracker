@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link, Switch, Redirect } from "react-router-dom";
 import { withRouter } from 'react-router';
 import axios from "axios";
 
@@ -80,6 +80,7 @@ class App extends Component {
     if (currentUser) {
       this.setState({ currentUser })
     }
+    
   }
 
   // -------------- AUTH ------------------
@@ -102,12 +103,17 @@ class App extends Component {
     // this.setState({ currentUser });
   }
 
-  handleLogout = () => {
-    localStorage.removeItem("jwt");
+  handleLogout = (e) => {
+    e.preventDefault();
+    localStorage.removeItem("authToken");
     this.setState({
       currentUser: null
     })
+    if (this.state.currentUser == null) {
+      return <Redirect to='/login' /> 
+    }
   }
+  
 
   authHandleChange = (e) => {
     const { name, value } = e.target;
