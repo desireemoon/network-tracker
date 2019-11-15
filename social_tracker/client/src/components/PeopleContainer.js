@@ -49,13 +49,13 @@ class PeopleContainer extends Component {
               :
               <>
                 <h2>{person.name}</h2>
-                <p>{person.relation}</p>
-                <p>{person.virtual_interaction}</p>
-                <p>{person.irl_interaction}</p>
-                <p>{person.phone}</p>
-                <p>{person.email}</p>
-                <p>{person.address}</p>
-                <p>{person.notes}</p>
+                <p>Relation to the Person: {person.relation}</p>
+                <p>Last virtual interaction: {person.virtual_interaction}</p>
+                <p>Last time you met up: {person.irl_interaction}</p>
+                <p>Phone number: {person.phone}</p>
+                <p>Email: {person.email}</p>
+                <p>Address: {person.address}</p>
+                <p>Notes: {person.notes}</p>
                 <button onClick={() => {
                   this.setState({
                     isEdit: true

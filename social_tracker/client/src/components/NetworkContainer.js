@@ -37,8 +37,9 @@ class NetworkContainer extends Component {
               :
               <>
                 <h2>{network.name}</h2>
-                <p>{network.network_type}</p>
-                <p>{network.description}</p>
+                <p>Network Type: {network.network_type}</p>
+                <p>Description: {network.description}</p>
+                <p>List of People in network:</p>
                 {network.people && network.people.map(person => (
                   <div
                     key={person.id}

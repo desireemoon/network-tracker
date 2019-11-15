@@ -46,7 +46,7 @@ const PeopleForm = (props) => {
                 value={props.personForm.email}
                 
                 onChange={props.handleFormChange} />
-            <p>address:</p>
+            <p>Address:</p>
             <input
                 type="text"
                 name="address"
