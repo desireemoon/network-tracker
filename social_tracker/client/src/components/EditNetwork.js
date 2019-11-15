@@ -1,26 +1,32 @@
-import React from 'react';
+import React, { Component } from 'react';
+
 import { withRouter } from 'react-router-dom';
 
-function NetworkCreation(props) {
+const NetworkForm = (props) => {
+
     return (
-        <div className="create-form" >
-            <h2>Create a new Network</h2>
-            <form onSubmit={props.newNetwork}>
+      <div className="create-form" >
+            <h2>Edit Network</h2>
+            <form onSubmit={props.handleSubmit}>
                 <p>*Network name:</p>
                 <input
                     type="text"
                     name="name"
                     value={props.networkForm.name}
                     onChange={props.handleFormChange} />
-                
-                <p>*Network Type:</p>
-                {/* <label htmlFor="network_type">Network Type:</label> */}
+                <label htmlFor="network_type">Network Type</label>
                 <select name="network_type" value={props.networkForm.network_type} required>
                     <option value="Family">Family</option>
                     <option value="Friends">Friends</option>
                     <option value="Work">Work</option>
                     <option value="Other">Other</option>
                 </select>
+                <p>*Network Type:</p>
+                <input
+                    type="text"
+                    name="network_type"
+                    value={props.networkForm.network_type}
+                    onChange={props.handleFormChange} />
                 <p>*Description:</p>
                 <input
                     type="text"
@@ -43,7 +49,7 @@ function NetworkCreation(props) {
             </form>
             <p>* Indicates the field is required.</p>
         </div >
-    )
-}
-
-export default withRouter(NetworkCreation);
+    );
+  }
+  
+  export default withRouter(NetworkForm);

@@ -5,20 +5,20 @@ import { withRouter } from 'react-router-dom';
 
 class AllNetworks extends Component {
 
-    componentDidMount = (props) => {
-        console.log("props networks", this.props.networks);
-        if ( !this.props.networksLoaded) {
-            this.props.getAllNetworks()
-        }
-        console.log("networks", this.props.networks);  
-    }
-
     render() {
         return (
             <div className="network-container">
                 {this.props.networks && this.props.networks.map(network => (
-                    <div className="network-box" key={network.id}>
-                        <Link to={`/networks/${network.id}`} onClick={() => this.props.setNetwork(network)}>{network.name}</Link>
+                    <div
+                        key={network.id}
+                        className="network-card"
+                        onClick={(e) => {
+                            this.props.history.push(`/networks/${network.id}`);
+                            window.scrollTo(0, 0);
+                        }}>
+                        <h3>
+                            <p>{network.name}</p>
+                        </h3>
                     </div>
                 )
                 )}

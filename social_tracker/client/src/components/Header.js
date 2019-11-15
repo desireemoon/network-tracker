@@ -14,7 +14,7 @@ const Header = (props) => {
             </div>
             <div className="nav">
             <div className="nav-button">
-                    <Link to="/networks">Create Network</Link>
+                    <Link to="/new/network">Create Network</Link>
                 </div>
                 <div className="nav-button">
                     <Link to="/networks">Network List</Link>
