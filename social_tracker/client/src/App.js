@@ -17,7 +17,6 @@ import CreateNetwork from './components/CreateNetwork'
 
 import AllPeople from './components/AllPeople'
 import PeopleContainer from './components/PeopleContainer';
-import PeopleForm from './components/PeopleForm';
 import PersonCreation from './components/CreatePerson'
 
 import './App.css';
@@ -254,12 +253,22 @@ class App extends Component {
 
   personHandleFormChange = (e) => {
     const { name, value } = e.target;
-    this.setState(prevState => ({
-      personForm: {
-        ...prevState.personForm,
-        [name]: value
-      }
-    }))
+    console.log("the target", e.target);
+
+    this.setState(
+      prevState => ({
+        personForm: {
+          ...prevState.personForm,
+          [name]: value
+        }
+      }))
+    // const element = e.target
+    // const {name, value} = element
+    // this.setState({
+    //   [name] : value
+    // })
+    //   console.log("updated person form:", this.personForm);
+      
   }
 
   personMountEditForm = async (id) => {
@@ -335,10 +344,14 @@ class App extends Component {
             <Route exact path="/people" render={() => (
               <AllPeople
                 currentUser={this.state.currentUser}
-                getAllPeople={this.getAllPeople}
                 people={this.state.people}
+                personForm={this.state.personForm}
+                handleFormChange={this.personHandleFormChange}
+
                 peopleLoaded={this.peopleLoaded}
-                setPerson={this.setPerson} />)}
+                setPerson={this.setPerson}
+                getAllPeople={this.getAllPeople}
+              />)}
             />
             {/* <Route exact path="/people/:id" render={() => (
               <PeopleContainer
@@ -381,6 +394,7 @@ class App extends Component {
                   editPerson={this.editPerson}
                   personForm={this.state.personForm}
                   deletePerson={this.deletePerson}
+
                   currentUser={this.state.currentUser}
                   currentPerson={this.state.currentPerson}
                   getAllPeople={this.getAllPeople}

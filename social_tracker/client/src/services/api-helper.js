@@ -65,6 +65,8 @@ const readAllPeople = async () => {
 }
 
 const updatePerson = async (id, data) => {
+  console.log("data", data);
+  
   const resp = await api.put(`/api/people/${id}`, { person: data })
   return resp.data
 }

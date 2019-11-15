@@ -15,10 +15,22 @@ class AllPeople extends Component {
     return (
       <div className="person-container">
         {this.props.people && this.props.people.map(person => (
-          <div className="person-box" key={person.id}>
-            {console.log(person)}
-            <Link to={`/people/${person.id}`} onClick={() => this.props.setPerson(person)}>{person.name}</Link>
-          </div>
+          // <div className="person-box" key={person.id}>
+          //   {console.log(person)}
+          //   <Link to={`/people/${person.id}`} onClick={() => this.props.setPerson(person)}>{person.name}</Link>
+          // </div>
+          <div
+          key={person.id}
+          className="person-card"
+          onClick={(e) => {
+            // debugger;
+            this.props.history.push(`/people/${person.id}`);
+            window.scrollTo(0, 0);
+          }}>
+          <h3>
+            <p>{person.name}</p>
+          </h3>
+        </div>
         )
         )}
       </div>

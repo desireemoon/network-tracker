@@ -43,7 +43,7 @@ class UsersController < ApiController
 
   # DELETE /users/1
   def destroy
-    @user.destroy
+    @current_user.destroy
   end
 
   private
