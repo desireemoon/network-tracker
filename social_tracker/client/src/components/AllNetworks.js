@@ -8,10 +8,11 @@ class AllNetworks extends Component {
     render() {
         return (
             <div className="network-container">
+                <h2>Network List</h2>
                 {this.props.networks && this.props.networks.map(network => (
                     <div
                         key={network.id}
-                        className="network-card"
+                        className="person-card"
                         onClick={(e) => {
                             this.props.history.push(`/networks/${network.id}`);
                             window.scrollTo(0, 0);

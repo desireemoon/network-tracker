@@ -35,7 +35,7 @@ class NetworkContainer extends Component {
                   networkForm={this.props.networkForm} />
               )} />
               :
-              <>
+              <div className="auth-container">
                 <h2>{network.name}</h2>
                 <p>Network Type: {network.network_type}</p>
                 <p>Description: {network.description}</p>
@@ -64,7 +64,7 @@ class NetworkContainer extends Component {
                   this.props.deleteNetwork(network.id);
                   this.props.history.push('/')
                 }}>Delete</button>
-              </>
+              </div>
             }
           </div>)}
       </div>)

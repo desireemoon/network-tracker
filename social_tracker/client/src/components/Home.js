@@ -5,7 +5,10 @@ const Home = (props) => {
 
     return (
       <div className="">
-       Welcome home friend!
+       <p className="home-message">Welcome Home Friend!</p>
+       <p className="home-message">Click on the linkes above to login and register then create networks and people. Enjoy!</p>
+
+
       </div>
     );
   }

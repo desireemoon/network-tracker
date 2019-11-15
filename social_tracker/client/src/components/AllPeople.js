@@ -7,6 +7,9 @@ class AllPeople extends Component {
   render() {
     return (
       <div className="person-container">
+        <h2>People List</h2>
+        <div className="holder">
+
         {this.props.people && this.props.people.map(person => (
           <div
           key={person.id}
@@ -21,6 +24,7 @@ class AllPeople extends Component {
         </div>
         )
         )}
+        </div>
       </div>
     )
   }

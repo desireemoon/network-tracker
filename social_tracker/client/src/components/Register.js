@@ -7,7 +7,7 @@ import { withRouter } from 'react-router-dom';
 const Register = (props) => {
   const CheckUser = (currentUser) => {
     if (currentUser != null) {
-      return <Redirect to='/' /> 
+      return <Redirect to='/' />
     }
   }
   return (
@@ -23,8 +23,9 @@ const Register = (props) => {
         <input name="email" type="text" value={props.formData.email} onChange={props.handleChange} />
         <p>Password:</p>
         <input name="password" type="password" value={props.formData.password} onChange={props.handleChange} />
-        <hr />
-        <input type="submit" />
+        <div>
+          <input className="submit" type="submit" />
+        </div>
       </form>
     </div>
   );

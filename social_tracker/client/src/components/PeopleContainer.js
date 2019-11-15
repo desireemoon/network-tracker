@@ -3,15 +3,15 @@ import { Link, Route } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
 
 import EditPerson from './EditPerson.js'
-/**
- * @type {React.CSSProperties}
- */
-const style = {
-    borderColor:"blue",
-    borderWidth:5,
-    backgroundColor:"purple",
-    borderStyle:"solid",
-}
+// /**
+//  * @type {React.CSSProperties}
+//  */
+// const style = {
+//     borderColor:"blue",
+//     borderWidth:5,
+//     backgroundColor:"purple",
+//     borderStyle:"solid",
+// }
 
 
 class PeopleContainer extends Component {
@@ -30,7 +30,7 @@ class PeopleContainer extends Component {
     const { person } = this.props;
     return (
       <div 
-        style={style}
+        // style={style}
         className="person-page">
         {person === undefined ? <h2>Loading . . .</h2> : (
           <div>
@@ -47,7 +47,7 @@ class PeopleContainer extends Component {
                   personForm={this.props.personForm} />
               )} />
               :
-              <>
+              <div className="auth-container">
                 <h2>{person.name}</h2>
                 <p>Relation to the Person: {person.relation}</p>
                 <p>Last virtual interaction: {person.virtual_interaction}</p>
@@ -66,7 +66,7 @@ class PeopleContainer extends Component {
                   this.props.deletePerson(person.id);
                   this.props.history.push('/')
                 }}>Delete</button>
-              </>
+              </div>
             }
           </div>)}
       </div>)
