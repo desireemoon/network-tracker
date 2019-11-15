@@ -29,7 +29,7 @@ const Header = (props) => {
                     {props.currentUser
                         ?
                         <div className="log-buttons">
-                            <div className="log"><Link className="link" to={ props.currentUser.user ? `/user/${props.currentUser.user.username}`: `/user/${props.currentUser.username}`}>{ props.currentUser.user ? props.currentUser.user.name: props.currentUser.name}'s Profile</Link></div>
+                            <div className="log"><Link className="link" to={ props.currentUser.user ? `/user/${props.currentUser.user.username}`: `/user/${props.currentUser.username}`}>{ props.currentUser.user ? props.currentUser.user.name: props.currentUser.name}'s Profile (User ID:{ props.currentUser.user ? props.currentUser.user.id: props.currentUser.id})</Link></div>
                             <div className="log"><Link className="link" onClick={props.handleLogout}>logout</Link></div>
                         </div>
                         :
