@@ -36,16 +36,6 @@ function NetworkCreation(props) {
                     value={props.networkForm.user_id}
                     onChange={props.handleFormChange}
                     required />
-                {/* <p>Add People:</p>
-                {props.people.map(person => {
-                    return (
-                        <div className="person-containers">
-                            <p>{person.name}</p>
-                            {props.people.includes({ 'id': person.id }) ?
-                                <button onClick={() => props.handleRemoveClick(person)}>Remove</button> : <button value="Add" onClick={() => props.handleAddClick(person)}>Add</button>}
-                        </div>
-                    )
-                })} */}
                 <div className="login-buttons">
                     <button onClick={props.newNetwork} className="submit">Submit</button> 
                 </div>

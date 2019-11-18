@@ -41,8 +41,6 @@ class App extends Component {
     super(props)
     this.state = {
       networks: [],
-      currentNetwork: {},
-      networksLoaded: false,
       networkForm: {
         name: "",
         network_type: "",
@@ -51,9 +49,6 @@ class App extends Component {
         people: []
       },
       people: [],
-      currentPerson: {},
-      peopleLoaded: false,
-      currentUser: null,
       personForm: {
         name: "",
         relation: '',
@@ -64,6 +59,7 @@ class App extends Component {
         address: '',
         notes: "",
       },
+      currentUser: null,
       authFormData: {
         name: "",
         username: "",
@@ -262,8 +258,7 @@ class App extends Component {
   personHandleFormChange = (e) => {
     const { name, value } = e.target;
     console.log("the target", e.target);
-    this.setState(
-      prevState => ({
+    this.setState( prevState => ({
         personForm: {
           ...prevState.personForm,
           [name]: value
@@ -385,6 +380,7 @@ class App extends Component {
                 />
               }}
             />
+            <Route component={NotFound} />
           </Switch>
         </main>
         <footer>

@@ -64,7 +64,8 @@ const PeopleForm = (props) => {
                     onChange={props.handleFormChange} />
                 <div className="login-buttons">
                     <input  className="submit" type="submit" />
-                </div>        </form>
+                </div>        
+                </form>
             <p>* Indicates the field is required.</p>
         </div >
     )
