@@ -76,7 +76,7 @@ class App extends Component {
     if (currentUser) {
       this.setState({ currentUser })
     }
-    
+
   }
 
   // -------------- AUTH ------------------
@@ -107,7 +107,7 @@ class App extends Component {
     })
     this.props.history.push("/login")
   }
-  
+
 
   authHandleChange = (e) => {
     const { name, value } = e.target;
@@ -138,7 +138,7 @@ class App extends Component {
       }
     }))
     this.props.history.push('/networks');
-    window.location.reload(); 
+    window.location.reload();
   }
 
   setNetwork = (network) => {
@@ -156,7 +156,7 @@ class App extends Component {
       }
     ))
     this.props.history.push(`/networks/${networkForm.id}`);
-    
+
   }
 
   deleteNetwork = async (id) => {
@@ -184,29 +184,29 @@ class App extends Component {
     });
   }
 
-   handleAddClick = (id) => {
+  handleAddClick = (id) => {
     this.setState(prevState => ({
-        networkForm: {
-          ...prevState.networkForm,
-            people: [
-                ...prevState.networkForm.people,
-                id
-            ]
-        }
+      networkForm: {
+        ...prevState.networkForm,
+        people: [
+          ...prevState.networkForm.people,
+          id
+        ]
+      }
     })
-    )    
-}
+    )
+  }
 
- handleRemoveClick = (id) => {
+  handleRemoveClick = (id) => {
     const updatedPeople = this.state.networkForm.people.filter(person => (
-        person.id != id.id
+      person.id != id.id
     ))
     this.setState({
-        networkForm: {
-            people: updatedPeople     
-        }
+      networkForm: {
+        people: updatedPeople
+      }
     })
-}
+  }
   // -------------- People ------------------
   getAllPeople = async () => {
     const people = await readAllPeople();
@@ -235,7 +235,7 @@ class App extends Component {
       }
     }))
     this.props.history.push('/people');
-    window.location.reload(); 
+    window.location.reload();
   }
 
   editPerson = async () => {
@@ -259,12 +259,12 @@ class App extends Component {
   personHandleFormChange = (e) => {
     const { name, value } = e.target;
     console.log("the target", e.target);
-    this.setState( prevState => ({
-        personForm: {
-          ...prevState.personForm,
-          [name]: value
-        }
-      }))
+    this.setState(prevState => ({
+      personForm: {
+        ...prevState.personForm,
+        [name]: value
+      }
+    }))
     console.log("updated person form:", this.personForm);
 
   }
@@ -280,7 +280,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
- 
+
         <header>
           <Header
             currentUser={this.state.currentUser}
@@ -293,7 +293,7 @@ class App extends Component {
             <Route
               exact path="/"
               render={() => (
-                <Home />
+                <Home currentUser={this.state.currentUser}/>
               )}
             />
             <Route exact path="/login" render={() => (
@@ -320,20 +320,21 @@ class App extends Component {
                 networkForm={this.state.networkForm}
                 handleFormChange={this.networkHandleFormChange}
               />)} />
-              <Route
+            <Route
               path="/new/network"
               render={() => (
                 <NetworkCreation
+                  currentUser={this.state.currentUser}
                   handleFormChange={this.networkHandleFormChange}
                   networkForm={this.state.networkForm}
                   newNetwork={this.newNetwork}
                   people={this.state.people}
                   handleAddClick={this.handleAddClick}
                   handleRemoveClick={this.handleRemoveClick}
-                  currentUser={this.state.currentUser}
-                   />
+
+                />
               )} />
-             <Route
+            <Route
               path="/networks/:id"
               render={(props) => {
                 const { id } = props.match.params;
@@ -351,18 +352,19 @@ class App extends Component {
                   people={this.state.people}
                 />
               }}
-              />
+            />
             <Route exact path="/people" render={() => (
               <AllPeople
                 currentUser={this.state.currentUser}
                 people={this.state.people}
                 personForm={this.state.personForm}
                 handleFormChange={this.personHandleFormChange}
-              />)}/>
+              />)} />
             <Route
               path="/new/person"
               render={() => (
                 <PersonCreation
+                currentUser={this.state.currentUser}
                   handleFormChange={this.personHandleFormChange}
                   personForm={this.state.personForm}
                   newPerson={this.newPerson} />

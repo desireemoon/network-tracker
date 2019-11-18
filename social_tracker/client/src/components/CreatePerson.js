@@ -5,9 +5,9 @@ import { withRouter } from 'react-router-dom';
 function PersonCreation(props) {
     const CheckUser = (currentUser) => {
         if (currentUser == null) {
-          return <Redirect to='/login' /> 
+            return <Redirect to='/login' />
         }
-      }
+    }
     return (
         <div className="auth-container" >
             {CheckUser(props.currentUser)}
