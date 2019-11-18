@@ -3,6 +3,8 @@ network-tracker
 
 # Project Link
 
+https://network-tracker.herokuapp.com/
+
 # Project Overview
 
 ## Project Schedule
@@ -10,17 +12,17 @@ network-tracker
 |  Day | Deliverable | Status
 |---|---| ---|
 | 11/7 | Project Design, approval, pseudocode backend, and start backend | Complete
-| 11/8 | Finish backend | Incomplete
-| 11/9 & 11/10 | Finish backend if not done and pseudocode frontend  | Incomplete
-| 11/11 | Frontend structure and start on logic | Incomplete
-| 11/12 | Finish logic and design | Incomplete
-| 11/13 | deploy and finish design | Incomplete
-| 11/14 | Finish design and PMVP | Incomplete
-| 11/15 | Present | Incomplete
+| 11/8 | Finish backend | Complete
+| 11/9 & 11/10 | Finish backend if not done and pseudocode frontend  | Complete
+| 11/11 | Frontend structure and start on logic | Complete
+| 11/12 | Finish logic and design | Complete
+| 11/13 | deploy and finish design | Complete
+| 11/14 | Finish design | Complete
+| 11/15 | Present | Complete
 
 ## Project Description
 
-A responsive web application that allows users to create specific social networks and add people to them. The user will be able to perform full crud on both their social networks and the people they've added. 
+A responsive web application that allows users to create specific social networks and add people to them. Once registered and logged in, the User can create, update, and delete people and networks. The purpose of the app is to give users the ability to keep track of their social circles and the last time they've virtually and physically interacted with the people in their circles.
 
 ## Wireframes
 
@@ -43,10 +45,10 @@ https://wireframe.cc/0fQuPj
 
 # PostMVP 
 - Dynamic header that shows user's name and conditional login/logout/register button
-- social media intergration
+- social media integration
 - calendar integration
 - Connecting Users to each other (interact with each other)
-- AI assitant that does most of the manual upadating and eventually AI will setup meetups for User
+- AI assistant that does most of the manual updating and eventually AI will setup meetups for User
 
 ## Architectural Design
 
@@ -81,16 +83,15 @@ https://res.cloudinary.com/dsnhxcw0e/image/upload/v1573139540/Image_from_iOS_1_n
 | Component | Priority | Estimated Time | Time Invested | Actual Time |
 | --- | :---: |  :---: | :---: | :---: |
 | Project Design | H | 4hrs| 4hrs | 4hrs |
-| Pseudocode | M | 4hrs| 2hrs | :---: |
-| Create DB (models, migration, seed) | H | 5hrs | 5hrs | 5hrs |
-| Create rest of backend including routes | H | 5hrs| 5hrs | :---: |
-| REACT structure | H | 6hrs| :---: | :---: |
-| React routing and links | H | 1hrs| :---: | :---: |
-| React logic and API calls | H | 6hrs| :---: | :---: |
-| Plan out designs | M | 4hrs| :---: | :---: |
-| CSS styling | M | 10hrs| :---: | :---: |
-| PMVP | M | 6hrs| :---: | :---: |
-| Total | H | 51hrs| 4hrs | :---: |
+| Pseudocode | M | 4hrs| 2hrs | 4hrs |
+| Create DB (models, migration, seed) | H | 5hrs | 6hrs | 6hrs |
+| Create rest of backend including routes | H | 5hrs| 6hrs | 6hrs |
+| REACT structure | H | 6hrs| 8hrs | 8hrs |
+| React routing and links | H | 1hr | 2hrs | 2hrs |
+| React logic and API calls | H | 6hrs| 8hrs | 8hrs |
+| Plan out designs | M | 4hrs| 4hrs | 4hrs |
+| CSS styling | M | 10hrs| 10hrs | 10hrs |
+| Total | H | 51hrs| 52hrs | 52hrs |
 
 
 ## Helper Functions
@@ -102,21 +103,22 @@ https://res.cloudinary.com/dsnhxcw0e/image/upload/v1573139540/Image_from_iOS_1_n
 ## Additional Libraries
 - react-router
 - axios
-- hamburger
 - react-router-dom
-- @fortawesome/fontawesome-svg-core
-- @fortawesome/free-brands-svg-icons
-- @fortawesome/free-solid-svg-icons
 
 
 ## Code Snippet
-
-Use this section to include a brief code snippet of functionality that you are proud of an a brief description  
-
-#### SAMPLE.....
 ```
-function reverse(string) {
-	// here is the code to reverse a string of text
+   handleAddClick = (id) => {
+    this.setState(prevState => ({
+        networkForm: {
+          ...prevState.networkForm,
+            people: [
+                ...prevState.networkForm.people,
+                id
+            ]
+        }
+    })
+    )    
 }
 ```
 
@@ -126,11 +128,12 @@ function reverse(string) {
 #### SAMPLE.....
 | Original Plan | Outcome | 
 | --- | :---: |  
-| Have one Book component | Split that component into BookInfo and BookInteraction as the component grew too complicated | 
+| Have a main component | Took this out after the logic wouldn't work in a child component | 
 
 ## Issues and Resolutions
- Use this section to list of all major issues encountered and their resolution.
+**ERROR**: ActiveRecord::SubclassNotFound: The single-table inheritance mechanism failed to locate the subclass: 'Friends'. This error is raised because the column 'type' is reserved for storing the class in case of inheritance. Please rename this column if you didn't intend it to be used for storing the inheritance class or overwrite Network.inheritance_column to use another column for that information.                             
+**RESOLUTION**: Had to change the column name
 
-#### SAMPLE.....
-**ERROR**: app.js:34 Uncaught SyntaxError: Unexpected identifier                                
-**RESOLUTION**: Missing comma after first object in sources {} object
+**ERROR**: with users: { errors: "Nil JSON web token" }
+without: This network-tracker.herokuapp.com page can’t be foundNo webpage was found for the web address: https://network-tracker.herokuapp.com/ HTTP ERROR 404                             
+**RESOLUTION**: Could not check routes on postman, had to check in app.

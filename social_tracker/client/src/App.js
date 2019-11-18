@@ -188,14 +188,11 @@ class App extends Component {
           ...prevState.networkForm,
             people: [
                 ...prevState.networkForm.people,
-                // {id: id}
                 id
             ]
         }
     })
-    )
-    console.log("network peeps", this.state.networkForm.people);
-    
+    )    
 }
 
  handleRemoveClick = (id) => {
