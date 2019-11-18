@@ -88,8 +88,6 @@ class App extends Component {
   handleLogin = async () => {
     const currentUser = await loginUser(this.state.authFormData);
     this.setState({ currentUser });
-    // console.log("auth data:", this.state.authFormData);
-    console.log("current user:", this.state.currentUser);
   }
 
   handleRegister = async (e) => {
@@ -97,6 +95,7 @@ class App extends Component {
     const currentUser = await registerUser(this.state.authFormData);
     console.log("new register", currentUser);
     // this.setState({ currentUser });
+    this.props.history.push("/login")
   }
 
   handleLogout = (e) => {
@@ -105,9 +104,7 @@ class App extends Component {
     this.setState({
       currentUser: null
     })
-    if (this.state.currentUser == null) {
-      return <Redirect to='/login' /> 
-    }
+    this.props.history.push("/login")
   }
   
 
@@ -139,6 +136,7 @@ class App extends Component {
         photo: ""
       }
     }))
+    this.props.history.push('/networks');
   }
 
   setNetwork = (network) => {
@@ -155,6 +153,7 @@ class App extends Component {
         networks: prevState.networks.map(network => network.id === networkForm.id ? networkForm : network),
       }
     ))
+    this.props.history.push(`/networks/${networkForm.id}`);
   }
 
   deleteNetwork = async (id) => {
@@ -219,7 +218,6 @@ class App extends Component {
     this.setState({
       currentPerson: person
     });
-    console.log("state current person", this.state.currentPerson);
 
   };
 
@@ -233,6 +231,8 @@ class App extends Component {
         photo: ""
       }
     }))
+    this.props.history.push('/people');
+    window.location.reload(); 
   }
 
   editPerson = async () => {
@@ -243,6 +243,8 @@ class App extends Component {
         people: prevState.people.map(person => person.id === personForm.id ? personForm : person),
       }
     ))
+    this.props.history.push(`/people/${personForm.id}`);
+    window.location.reload(); 
   }
 
   deletePerson = async (id) => {
@@ -276,6 +278,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        
         <header>
           <Header
             currentUser={this.state.currentUser}

@@ -65,7 +65,7 @@ class NetworkContainer extends Component {
                 }}>Edit</button>
                 <button onClick={() => {
                   this.props.deleteNetwork(network.id);
-                  this.props.history.push('/')
+                  this.props.history.push('/networks')
                 }}>Delete</button>
               </div>
             }

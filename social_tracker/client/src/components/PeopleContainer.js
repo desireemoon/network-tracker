@@ -64,7 +64,7 @@ class PeopleContainer extends Component {
                 }}>Edit</button>
                 <button onClick={() => {
                   this.props.deletePerson(person.id);
-                  this.props.history.push('/')
+                  this.props.history.push('/people')
                 }}>Delete</button>
               </div>
             }

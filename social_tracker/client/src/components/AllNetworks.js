@@ -9,6 +9,7 @@ class AllNetworks extends Component {
         return (
             <div className="network-container">
                 <h2>Network List</h2>
+                <div className="holder">
                 {this.props.networks && this.props.networks.map(network => (
                     <div
                         key={network.id}
@@ -23,6 +24,7 @@ class AllNetworks extends Component {
                     </div>
                 )
                 )}
+                </div>
             </div>
         )
     }
