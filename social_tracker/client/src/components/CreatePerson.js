@@ -1,9 +1,16 @@
 import React from 'react';
+import { Link, Redirect } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
 
 function PersonCreation(props) {
+    const CheckUser = (currentUser) => {
+        if (currentUser == null) {
+          return <Redirect to='/login' /> 
+        }
+      }
     return (
         <div className="auth-container" >
+            {CheckUser(props.currentUser)}
             <h2>Create a new Person</h2>
             <form onSubmit={props.newPerson}>
                 <p>*Person's name:</p>
@@ -18,8 +25,8 @@ function PersonCreation(props) {
                     type="text"
                     name="relation"
                     value={props.personForm.relation}
-                    onChange={props.handleFormChange} 
-                    required/>
+                    onChange={props.handleFormChange}
+                    required />
                 <p>*Last virtual interaction:</p>
                 <input
                     type="text"
@@ -34,8 +41,8 @@ function PersonCreation(props) {
                     placeholder="YYYY-MM-DD"
                     name="irl_interaction"
                     value={props.personForm.irl_interaction}
-                    onChange={props.handleFormChange} 
-                    required/>
+                    onChange={props.handleFormChange}
+                    required />
                 <p>Phone number:</p>
                 <input
                     type="tel"

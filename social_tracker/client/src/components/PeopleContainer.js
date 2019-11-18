@@ -1,18 +1,7 @@
 import React, { Component } from 'react';
 import { Link, Route } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
-
 import EditPerson from './EditPerson.js'
-// /**
-//  * @type {React.CSSProperties}
-//  */
-// const style = {
-//     borderColor:"blue",
-//     borderWidth:5,
-//     backgroundColor:"purple",
-//     borderStyle:"solid",
-// }
-
 
 class PeopleContainer extends Component {
   constructor(props) {
@@ -21,7 +10,6 @@ class PeopleContainer extends Component {
       isEdit: false
     }
   }
-
   componentDidMount() {
     this.props.mountEditForm(this.props.id);
   }
@@ -30,7 +18,6 @@ class PeopleContainer extends Component {
     const { person } = this.props;
     return (
       <div 
-        // style={style}
         className="person-page">
         {person === undefined ? <h2>Loading . . .</h2> : (
           <div>

@@ -1,11 +1,16 @@
 import React from 'react';
+import { Link, Redirect } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
 
 function NetworkCreation(props) {
-
-    
+    const CheckUser = (currentUser) => {
+        if (currentUser == null) {
+            return <Redirect to='/login' />
+        }
+    }
     return (
         <div className="auth-container" >
+            {CheckUser(props.currentUser)}
             <h2>Create a new Network</h2>
             <div >
                 <p>*Network name:</p>
@@ -37,7 +42,7 @@ function NetworkCreation(props) {
                     onChange={props.handleFormChange}
                     required />
                 <div className="login-buttons">
-                    <button onClick={props.newNetwork} className="submit">Submit</button> 
+                    <button onClick={props.newNetwork} className="submit">Submit</button>
                 </div>
             </div>
             <p>* Indicates the field is required.</p>

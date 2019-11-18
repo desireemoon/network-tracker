@@ -2,11 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
 
-
-
 // This component handles our login form and has a link to the register form
 const Footer = (props) => {
-
     return (
         <div className="footer-container">
             <div class="social-title">
@@ -24,7 +21,6 @@ const Footer = (props) => {
             <div class="social-links"> 
                 <a href="mailto:desiree.dewysocki@gmail.com">Email</a>    
             </div>
-            
         </div>
     );
 }

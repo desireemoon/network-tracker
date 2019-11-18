@@ -88,13 +88,14 @@ class App extends Component {
   handleLogin = async () => {
     const currentUser = await loginUser(this.state.authFormData);
     this.setState({ currentUser });
+    this.props.history.push(`/user/${currentUser.name}`)
   }
 
   handleRegister = async (e) => {
     e.preventDefault();
     const currentUser = await registerUser(this.state.authFormData);
     console.log("new register", currentUser);
-    // this.setState({ currentUser });
+    this.setState({ currentUser });
     this.props.history.push("/login")
   }
 
@@ -137,6 +138,7 @@ class App extends Component {
       }
     }))
     this.props.history.push('/networks');
+    window.location.reload(); 
   }
 
   setNetwork = (network) => {
@@ -154,6 +156,7 @@ class App extends Component {
       }
     ))
     this.props.history.push(`/networks/${networkForm.id}`);
+    
   }
 
   deleteNetwork = async (id) => {
@@ -244,7 +247,6 @@ class App extends Component {
       }
     ))
     this.props.history.push(`/people/${personForm.id}`);
-    window.location.reload(); 
   }
 
   deletePerson = async (id) => {
@@ -278,7 +280,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        
+ 
         <header>
           <Header
             currentUser={this.state.currentUser}
@@ -328,6 +330,7 @@ class App extends Component {
                   people={this.state.people}
                   handleAddClick={this.handleAddClick}
                   handleRemoveClick={this.handleRemoveClick}
+                  currentUser={this.state.currentUser}
                    />
               )} />
              <Route
