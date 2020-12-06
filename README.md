@@ -122,13 +122,6 @@ https://res.cloudinary.com/dsnhxcw0e/image/upload/v1573139540/Image_from_iOS_1_n
 }
 ```
 
-## Change Log
- Use this section to document what changes were made and the reasoning behind those changes.  
-
-#### SAMPLE.....
-| Original Plan | Outcome | 
-| --- | :---: |  
-| Have a main component | Took this out after the logic wouldn't work in a child component | 
 
 ## Issues and Resolutions
 **ERROR**: ActiveRecord::SubclassNotFound: The single-table inheritance mechanism failed to locate the subclass: 'Friends'. This error is raised because the column 'type' is reserved for storing the class in case of inheritance. Please rename this column if you didn't intend it to be used for storing the inheritance class or overwrite Network.inheritance_column to use another column for that information.                             
